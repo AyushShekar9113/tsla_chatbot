@@ -19,7 +19,7 @@ df['timestamp'] = pd.to_datetime(df['timestamp'])
 df['Support'] = df['Support'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else [])
 df['Resistance'] = df['Resistance'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else [])
 # Load CSV
-@st.cache_data
+# @st.cache_data
 def load_data():
     df = pd.read_csv("tsla_data.csv")
     df['timestamp'] = pd.to_datetime(df['timestamp'])
@@ -32,7 +32,7 @@ def load_data():
 df = load_data()
 
 # Generate global context for Gemini
-@st.cache_data
+# @st.cache_data
 def generate_gemini_context(df):
     highest_volume_row = df.loc[df['volume'].idxmax()]
     highest_volume_date = highest_volume_row['timestamp'].strftime("%B %d, %Y")
